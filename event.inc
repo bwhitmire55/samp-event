@@ -102,12 +102,8 @@ hook OnPlayerCommandText(playerid, cmdtext[]) {
 
     for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {
         if(gEventData[i][eID] != 0) {
-            
-            new buffer[30];
-            strcat(buffer, "/");
-            strcat(buffer, gEventData[i][eCommand]);
 
-            if(!strcmp(cmdtext, buffer, true)) {
+            if(!strcmp(cmdtext, gEventData[i][eCommand], true)) {
                 PutPlayerInEvent(playerid, i);
                 return 1;
             }
@@ -231,9 +227,10 @@ public RemovePlayerFromEvent(playerid) {
     return 0;
 }
 
-forward GetEventName(eventid);
-public GetEventName(eventid) {
-    return gEventData[eventid][eName];
+forward GetEventName(eventid, buffer[], size);
+public GetEventName(eventid, buffer[], size) {
+    strcat(buffer, gEventData[eventid][eName], size);
+    return 1;
 }
 
 forward GetEventCommand(eventid);

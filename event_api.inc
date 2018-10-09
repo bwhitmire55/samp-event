@@ -52,7 +52,9 @@ public API_OnPlayerSpawnInEvent(playerid, id) {
 }
 
 stock GetName() {
-    return CallRemoteFunction("GetEventName", "i", gEventID);
+    new buffer[60];
+    CallRemoteFunction("GetEventName", "iai", gEventID, buffer, sizeof(buffer));
+    return buffer;
 }
 
 stock GetCommand() {

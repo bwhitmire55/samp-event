@@ -4,6 +4,7 @@
 	"entry": "minigun-dm.pwn",
 	"output": "../minigun-dm.amx",
 	"dependencies": [
-		"sampctl/samp-stdlib"
+		"sampctl/samp-stdlib",
+		"bwhitmire55/samp-event"
 	]
 }

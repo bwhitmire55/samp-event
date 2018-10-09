@@ -5,7 +5,7 @@
 #include <a_samp>
 #include <event_api>
 
-const Float: gSpawnPoints[][4] = 
+static const Float: gSpawnPoints[][4] = 
 {
 	{ 2552.7036,2813.3635,27.8203,180.5949 },
 	{ 2610.1797,2820.7148,27.8203,173.7014 },
@@ -74,7 +74,7 @@ public OnPlayerDeath(playerid, killerid, reason) {
 }
 
 SetUpPlayer(playerid) {
-    new idx = random(sizeof(g_SpawnPoints));
+    new idx = random(sizeof(gSpawnPoints));
     SetPlayerPos(playerid, gSpawnPoints[idx][0], gSpawnPoints[idx][1], gSpawnPoints[idx][2]);
     SetPlayerFacingAngle(playerid, gSpawnPoints[idx][3]);
     GivePlayerWeapon(playerid, 38, 5000);
