@@ -50,3 +50,7 @@ public API_OnPlayerSpawnInEvent(playerid, id) {
     }
     return 1;
 }
+
+stock RemovePlayer(playerid) { 
+    CallRemoteFunction("RemovePlayerFromEvent", "i", playerid); 
+}
