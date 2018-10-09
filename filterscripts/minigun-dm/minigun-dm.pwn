@@ -30,9 +30,7 @@ new gPlayerDeaths[MAX_PLAYERS];
 
 public OnEventInit() {
 
-    new buffer[90];
-    format(buffer, sizeof(buffer), "** Event %s has begun! Use %s to join!", GetName(), GetCommand());
-    SendClientMessageToAll(0x00FF00FF, buffer);
+    SendClientMessageToAll(0x00FF00FF, "** Event Minigun Deathmatch has begun! Use /minigun to join!");
     return 1;
 }
 

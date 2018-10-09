@@ -50,17 +50,3 @@ public API_OnPlayerSpawnInEvent(playerid, id) {
     }
     return 1;
 }
-
-stock GetName() {
-    new buffer[60];
-    CallRemoteFunction("GetEventName", "iai", gEventID, buffer, sizeof(buffer));
-    return buffer;
-}
-
-stock GetCommand() {
-    return CallRemoteFunction("GetEventCommand", "i", gEventID);
-}
-
-stock RemovePlayer(playerid) {
-    CallRemoteFunction("RemovePlayerFromEvent", "i", playerid);
-}

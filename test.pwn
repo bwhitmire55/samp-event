@@ -6,6 +6,8 @@ main() {
 
 public OnGameModeInit() {
     print("Test mode for event.inc");
+
+    AddPlayerClass(0, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0);
     return 1;
 }
 

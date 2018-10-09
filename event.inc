@@ -226,14 +226,3 @@ public RemovePlayerFromEvent(playerid) {
     }
     return 0;
 }
-
-forward GetEventName(eventid, buffer[], size);
-public GetEventName(eventid, buffer[], size) {
-    strcat(buffer, gEventData[eventid][eName], size);
-    return 1;
-}
-
-forward GetEventCommand(eventid);
-public GetEventCommand(eventid) {
-    return gEventData[eventid][eCommand];
-}
