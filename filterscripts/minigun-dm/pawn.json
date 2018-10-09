@@ -1,0 +1,9 @@
+{
+	"user": "bwhitmire55",
+	"repo": "minigun-dm",
+	"entry": "minigun-dm.pwn",
+	"output": "../minigun-dm.amx",
+	"dependencies": [
+		"sampctl/samp-stdlib"
+	]
+}

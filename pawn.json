@@ -1,0 +1,10 @@
+{
+	"user": "bwhitmire55",
+	"repo": "samp-event",
+	"entry": "test.pwn",
+	"output": "test.amx",
+	"dependencies": [
+		"sampctl/samp-stdlib",
+		"pawn-lang/YSI-Includes"
+	]
+}
