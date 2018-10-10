@@ -108,15 +108,15 @@ hook OnPlayerDeath(playerid, killerid, reason) {
 
 hook OnPlayerCommandText(playerid, cmdtext[]) {
 
-    if(gPlayerEvent[playerid] != 0) {
-        return 0;
-    }
-
     for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {
         if(gEventData[i][eID] != 0) {
 
             if(!strcmp(cmdtext, gEventData[i][eCommand], true)) {
-                PutPlayerInEvent(playerid, i);
+                if(gPlayerEvent[playerid] != 0) {
+                    SendClientMessage(playerid, 0xFF0000FF, "You are already in an event! You must leave first.");
+                } else {
+                    PutPlayerInEvent(playerid, i);
+                }
                 return 1;
             }
         }
