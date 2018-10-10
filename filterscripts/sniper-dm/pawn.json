@@ -1,0 +1,10 @@
+{
+	"user": "bwhitmire55",
+	"repo": "sniper-dm",
+	"entry": "sniper-dm.pwn",
+	"output": "../sniper-dm.amx",
+	"dependencies": [
+		"sampctl/samp-stdlib",
+		"bwhitmire55/samp-event"
+	]
+}

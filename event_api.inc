@@ -7,7 +7,7 @@ forward OnEventExit();
 forward OnPlayerJoinEvent(playerid);
 forward OnPlayerLeaveEvent(playerid);
 forward OnPlayerSpawnInEvent(playerid);
-forward OnPlayerDeathInEvent(playerid);
+forward OnPlayerDeathInEvent(playerid, killerid, reason);
 
 static gEventID = 0;
 
@@ -65,5 +65,5 @@ stock RemovePlayer(playerid) {
 }
 
 stock RemoveAllPlayers() {
-    CallRemoteFunction("RemoveAllPlayersFromEvent", "");
+    CallRemoteFunction("RemoveAllPlayersFromEvent", "i", gEventID);
 }
