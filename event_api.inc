@@ -7,6 +7,7 @@ forward OnEventExit();
 forward OnPlayerJoinEvent(playerid);
 forward OnPlayerLeaveEvent(playerid);
 forward OnPlayerSpawnInEvent(playerid);
+forward OnPlayerDeathInEvent(playerid);
 
 static gEventID = 0;
 
