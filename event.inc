@@ -115,7 +115,7 @@ hook OnPlayerCommandText(playerid, cmdtext[]) {
                 if(gPlayerEvent[playerid] != 0) {
                     SendClientMessage(playerid, 0xFF0000FF, "You are already in an event! You must leave first.");
                 } else {
-                    PutPlayerInEvent(playerid, i);
+                    PutPlayerInEvent(playerid, gEventData[i][eID]);
                 }
                 return 1;
             }
@@ -158,7 +158,7 @@ stock LoadEvent(id) {
                format(query, sizeof(query), "loadfs %s", query);
 
                SendRconCommand(query);
-               CallRemoteFunction("OnEventInit", "i", index);
+               CallRemoteFunction("OnEventInit", "i", id);
                return 1;
            }
         }
