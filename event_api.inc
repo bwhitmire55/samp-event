@@ -9,11 +9,11 @@ forward OnPlayerLeaveEvent(playerid);
 forward OnPlayerSpawnInEvent(playerid);
 forward OnPlayerDeathInEvent(playerid, killerid, reason);
 
-static gEventID = 0;
+static gEventID = -1;
 
 forward API_OnEventInit(id);
 public API_OnEventInit(id) {
-    if(gEventID == 0) {
+    if(gEventID == -1) {
         gEventID = id;
         CallLocalFunction("OnEventInit", "");
     }
