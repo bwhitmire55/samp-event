@@ -203,7 +203,7 @@ static PutPlayerInEvent(playerid, eventid) {
 static GetOpenEventSlot() {
     for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {
         if(gEventData[i][eID] == 0) {
-            return 1;
+            return i;
         }
     }
     return 0;
