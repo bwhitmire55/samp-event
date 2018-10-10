@@ -93,7 +93,7 @@ bool: IsPlayerInEvent(playerid) {
 hook OnPlayerSpawn(playerid) {
 
     if(IsPlayerInEvent(playerid)) {
-        CallRemoteFunction("OnPlayerSpawnInEvent", "ii", playerid, gPlayerEvent[playerid]);
+        CallRemoteFunction("API_OnPlayerSpawnInEvent", "ii", playerid, gPlayerEvent[playerid]);
     }
     return 1;
 }
@@ -101,7 +101,7 @@ hook OnPlayerSpawn(playerid) {
 hook OnPlayerDeath(playerid, killerid, reason) {
 
     if(IsPlayerInEvent(playerid)) {
-        CallRemoteFunction("OnPlayerDeathInEvent", "iiii", playerid, killerid, reason, gPlayerEvent[playerid]);
+        CallRemoteFunction("API_OnPlayerDeathInEvent", "iiii", playerid, killerid, reason, gPlayerEvent[playerid]);
     }
     return 1;
 }
@@ -158,7 +158,7 @@ stock LoadEvent(id) {
                format(query, sizeof(query), "loadfs %s", query);
 
                SendRconCommand(query);
-               CallRemoteFunction("OnEventInit", "i", id);
+               CallRemoteFunction("API_OnEventInit", "i", id);
                return 1;
            }
         }
@@ -187,14 +187,14 @@ stock UnloadEvent(id) {
     gEventData[id][eFile][0] = EOS;
     gEventData[id][eCommand][0] = EOS;
 
-    CallRemoteFunction("OnEventExit", "i", id);
+    CallRemoteFunction("API_OnEventExit", "i", id);
     return 1;
 }
 
 static PutPlayerInEvent(playerid, eventid) {
     if(gEventData[eventid][eID] != 0) {
         gPlayerEvent[playerid] = eventid;
-        CallRemoteFunction("OnPlayerJoinEvent", "ii", playerid, eventid);
+        CallRemoteFunction("API_OnPlayerJoinEvent", "ii", playerid, eventid);
         return 1;
     }
     return 0;
@@ -232,7 +232,7 @@ static CreateDefaultTable() {
 forward RemovePlayerFromEvent(playerid);
 public RemovePlayerFromEvent(playerid) {
     if(IsPlayerInEvent(playerid)) {
-        CallRemoteFunction("OnPlayerLeaveEvent", "ii", playerid, gPlayerEvent[playerid]);
+        CallRemoteFunction("API_OnPlayerLeaveEvent", "ii", playerid, gPlayerEvent[playerid]);
         gPlayerEvent[playerid] = 0;
         return 1;
     }
