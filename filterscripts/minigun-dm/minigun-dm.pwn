@@ -61,7 +61,7 @@ public OnPlayerSpawnInEvent(playerid) {
     return 1;
 }
 
-public OnPlayerDeath(playerid, killerid, reason) {
+public OnPlayerDeathInEvent(playerid, killerid, reason) {
     // for example sake, remove the player after 5 deaths
     gPlayerDeaths[playerid]++;
 

@@ -98,6 +98,14 @@ hook OnPlayerSpawn(playerid) {
     return 1;
 }
 
+hook OnPlayerDeath(playerid, killerid, reason) {
+
+    if(IsPlayerInEvent(playerid)) {
+        CallRemoteFunction("OnPlayerDeathInEvent", "iiii", playerid, killerid, reason, gPlayerEvent[playerid]);
+    }
+    return 1;
+}
+
 hook OnPlayerCommandText(playerid, cmdtext[]) {
 
     for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {

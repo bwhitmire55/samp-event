@@ -51,6 +51,14 @@ public API_OnPlayerSpawnInEvent(playerid, id) {
     return 1;
 }
 
+forward API_OnPlayerDeathInEvent(playerid, killerid, reason, id);
+public API_OnPlayerDeathInEvent(playerid, killerid, reason, id) {
+    if(id == gEventID) {
+        CallLocalFunction("OnPlayerDeathInEvent", "iii", playerid, killerid, reason);
+    }
+    return 1;
+}
+
 stock RemovePlayer(playerid) { 
     CallRemoteFunction("RemovePlayerFromEvent", "i", playerid); 
 }
