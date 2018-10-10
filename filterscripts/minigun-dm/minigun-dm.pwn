@@ -37,6 +37,7 @@ public OnEventInit() {
 public OnEventExit() {
     
     SendClientMessageToAll(0x00FF00FF, "** Event Minigun Deathmatch has ended!");
+    RemoveAllPlayers();
     return 1;
 }
 
