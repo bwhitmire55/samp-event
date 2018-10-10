@@ -63,3 +63,7 @@ public API_OnPlayerDeathInEvent(playerid, killerid, reason, id) {
 stock RemovePlayer(playerid) { 
     CallRemoteFunction("RemovePlayerFromEvent", "i", playerid); 
 }
+
+stock RemoveAllPlayers() {
+    CallRemoteFunction("RemoveAllPlayersFromEvent", "");
+}

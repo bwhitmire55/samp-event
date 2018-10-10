@@ -234,3 +234,13 @@ public RemovePlayerFromEvent(playerid) {
     }
     return 0;
 }
+
+forward RemoveAllPlayersFromEvent(eventid);
+public RemoveAllPlayersFromEvent(eventid) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(gPlayerEvent[playerid] == eventid) {
+            RemovePlayerFromEvent(i);
+        }
+    }
+    return 1;
+}
