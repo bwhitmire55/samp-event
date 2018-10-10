@@ -238,7 +238,7 @@ public RemovePlayerFromEvent(playerid) {
 forward RemoveAllPlayersFromEvent(eventid);
 public RemoveAllPlayersFromEvent(eventid) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
-        if(gPlayerEvent[playerid] == eventid) {
+        if(gPlayerEvent[i] == eventid) {
             RemovePlayerFromEvent(i);
         }
     }
