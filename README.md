@@ -17,7 +17,7 @@ sampctl package install bwhitmire55/samp-event
 Include in your code and begin using the library:
 
 ```pawn
-#include <samp-event>
+#include <event>
 ```
 
 ## Functions
@@ -88,8 +88,8 @@ RemovePlayer(playerid);
 RemoveAllPlayers();
 ```
 These are all fairly self explanatory, but it's worth mentioning that these callbacks will only be called from within this event script. So, if you have two events loaded (minigun and sniper) and a player joins the first event (minigun), OnPlayerJoinEvent will only be called from the first (minigun) script.
-```
-You also have use to any other functions and callbacks included in the file. Just note that if you use 'OnPlayerRequestClass' in the event script, it will be called for EVERY player, not just the ones currently in the event. Only the custom callbacks above will be called by only players within the event.
+
+You can also use any other functions and callbacks included in the file. Just note that if you use 'OnPlayerRequestClass' in the event script, it will be called for EVERY player, not just the ones currently in the event. Only the custom callbacks above will be called by only players within the event.
 
 Below is a fully working Minigun Deathmatch event:
 ```pawn
