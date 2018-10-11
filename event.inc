@@ -5,7 +5,8 @@
 // TO-DO
 // Ensure the same event isn't loaded multiple times
 // Add API function to remotely end the event
-// Implement /leave command
+// Convert internal data to be accessed by array index, and external calls
+// accessed by actual mode ID
 
 #if defined EVENT_INC
     #endinput
@@ -169,17 +170,26 @@ stock LoadEvent(id) {
 
                SendRconCommand(query);
                CallRemoteFunction("API_OnEventInit", "i", id);
-               return 1;
+               return index;
            }
         }
         db_free_result(result);
     }
-    return 0;
+    return -1;
 }
 
 stock UnloadEvent(id) {
 
-    if(gEventData[id][eID] == 0) {
+    new event = -1;
+
+    for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {
+        if(gEventData[i][eID] == id) {
+            event = i;
+            break;
+        }
+    }
+
+    if(event == -1) {
         printf("[ERROR - event.inc] Cannot unload event id %i - event not loaded", id);
         return 0;
     } 
@@ -187,27 +197,24 @@ stock UnloadEvent(id) {
     new buffer[128];
     
     strcat(buffer, EVENT_FILE_DIRECTORY);
-    strcat(buffer, gEventData[id][eFile]);
+    strcat(buffer, gEventData[event][eFile]);
     format(buffer, sizeof(buffer), "unloadfs %s", buffer);
 
-    gEventData[id][eID] = 0;
-    gEventData[id][eName][0] = EOS;
-    gEventData[id][eAuthor][0] = EOS;
-    gEventData[id][eVersion][0] = EOS;
-    gEventData[id][eFile][0] = EOS;
-    gEventData[id][eCommand][0] = EOS;
+    gEventData[event][eID] = 0;
+    gEventData[event][eName][0] = EOS;
+    gEventData[event][eAuthor][0] = EOS;
+    gEventData[event][eVersion][0] = EOS;
+    gEventData[event][eFile][0] = EOS;
+    gEventData[event][eCommand][0] = EOS;
 
     CallRemoteFunction("API_OnEventExit", "i", id);
     return 1;
 }
 
 static PutPlayerInEvent(playerid, eventid) {
-    if(gEventData[eventid][eID] != 0) {
-        gPlayerEvent[playerid] = eventid;
-        CallRemoteFunction("API_OnPlayerJoinEvent", "ii", playerid, eventid);
-        return 1;
-    }
-    return 0;
+    gPlayerEvent[playerid] = eventid;
+    CallRemoteFunction("API_OnPlayerJoinEvent", "ii", playerid, eventid);
+    return 1;
 }
 
 static GetOpenEventSlot() {
