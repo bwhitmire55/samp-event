@@ -60,6 +60,10 @@ public API_OnPlayerDeathInEvent(playerid, killerid, reason, id) {
     return 1;
 }
 
+stock EndEvent() {
+    CallRemoteFunction("SAFE_UnloadEvent", "i", gEventID);
+}
+
 stock RemovePlayer(playerid) { 
     CallRemoteFunction("RemovePlayerFromEvent", "i", playerid); 
 }

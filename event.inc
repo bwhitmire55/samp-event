@@ -3,10 +3,7 @@
 //
 
 // TO-DO
-// Ensure the same event isn't loaded multiple times
 // Add API function to remotely end the event
-// Convert internal data to be accessed by array index, and external calls
-// accessed by actual mode ID
 
 #if defined EVENT_INC
     #endinput
@@ -137,6 +134,13 @@ hook OnPlayerCommandText(playerid, cmdtext[]) {
 
 stock LoadEvent(id) {
     
+    for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {
+        if(gEventData[i][eID] == id) {
+            printf("[ERROR - event.inc] Could not load mode id %i - it's already loaded", id);
+            return 0;
+        }
+    }
+
     new 
         DBResult: result,
         query[128];
@@ -263,5 +267,12 @@ public RemoveAllPlayersFromEvent(eventid) {
             RemovePlayerFromEvent(i);
         }
     }
+    return 1;
+}
+
+// Prevent CallRemoteFunction crash
+forward SAFE_UnloadEvent(eventid);
+public SAFE_UnloadEvent(eventid) {
+    SetTimer("UnloadEvent", 500, false);
     return 1;
 }
