@@ -27,6 +27,7 @@ static const Float: gSpawnPoints[][4] =
 };
 
 new gPlayerDeaths[MAX_PLAYERS];
+new gPlayerKills[MAX_PLAYERS];
 
 public OnEventInit() {
 
@@ -54,6 +55,7 @@ public OnPlayerLeaveEvent(playerid) {
     ResetPlayerWeapons(playerid);
     SpawnPlayer(playerid);
     gPlayerDeaths[playerid] = 0;
+    gPlayerKills[playerid] = 0;
     return 1;
 }
 
@@ -68,6 +70,21 @@ public OnPlayerDeathInEvent(playerid, killerid, reason) {
 
     if(gPlayerDeaths[playerid] == 5) {
         RemovePlayer(playerid);
+    }
+
+    // end the event after someone gets 10 kills
+    if(IsPlayerConnected(killerid)) {
+        gPlayerKills[killerid]++;
+
+        if(gPlayerKills[killerid] == 10) {
+            
+            new string[128], name[MAX_PLAYER_NAME + 1];
+            GetPlayerName(killerid, name, sizeof(name));
+            format(string, sizeof(string), "** %s has won the event with 10 kills!", name);
+            SendClientMessageToAll(0x00FF00FF, string);
+
+            EndEvent();
+        }
     }
     return 1;
 }

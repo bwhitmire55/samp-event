@@ -2,9 +2,6 @@
 // event.inc
 //
 
-// TO-DO
-// Add API function to remotely end the event
-
 #if defined EVENT_INC
     #endinput
 #endif 
@@ -182,7 +179,8 @@ stock LoadEvent(id) {
     return -1;
 }
 
-stock UnloadEvent(id) {
+forward UnloadEvent(id);
+public UnloadEvent(id) {
 
     new event = -1;
 
