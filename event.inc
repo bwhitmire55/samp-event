@@ -196,6 +196,8 @@ public UnloadEvent(id) {
         return 0;
     } 
 
+    CallRemoteFunction("API_OnEventExit", "i", id);
+
     new buffer[128];
     
     strcat(buffer, EVENT_FILE_DIRECTORY);
@@ -208,8 +210,6 @@ public UnloadEvent(id) {
     gEventData[event][eVersion][0] = EOS;
     gEventData[event][eFile][0] = EOS;
     gEventData[event][eCommand][0] = EOS;
-
-    CallRemoteFunction("API_OnEventExit", "i", id);
     return 1;
 }
 
