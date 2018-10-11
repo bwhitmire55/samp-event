@@ -178,7 +178,7 @@ stock LoadEvent(id) {
 
                SendRconCommand(query);
                CallRemoteFunction("API_OnEventInit", "i", id);
-               return index;
+               return 1;
            }
         }
         db_free_result(result);
