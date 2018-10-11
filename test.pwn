@@ -22,5 +22,15 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
         LoadEvent(2);
         return 1;
     }
+
+    if(!strcmp(cmdtext, "/utest1", true)) {
+        UnloadEvent(1);
+        return 1;
+    }
+
+    if(!strcmp(cmdtext, "/utest2", true)) {
+        UnloadEvent(2);
+        return 1;
+    }
     return 0;
 }

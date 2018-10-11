@@ -210,6 +210,7 @@ public UnloadEvent(id) {
     strcat(buffer, EVENT_FILE_DIRECTORY);
     strcat(buffer, gEventData[event][eFile]);
     format(buffer, sizeof(buffer), "unloadfs %s", buffer);
+    SendRconCommand(buffer);
 
     gEventData[event][eID] = 0;
     gEventData[event][eName][0] = EOS;
