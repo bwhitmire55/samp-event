@@ -2,6 +2,11 @@
 // event.inc
 //
 
+// TO-DO
+// Ensure the same event isn't loaded multiple times
+// Add API function to remotely end the event
+// Implement /leave command
+
 #if defined EVENT_INC
     #endinput
 #endif 
@@ -108,12 +113,17 @@ hook OnPlayerDeath(playerid, killerid, reason) {
 
 hook OnPlayerCommandText(playerid, cmdtext[]) {
 
+    if(!strcmp(cmdtext, "/leave", true)) {
+        RemovePlayerFromEvent(playerid);
+        return 1;
+    }
+
     for(new i = 0; i < EVENT_MAX_CONCURRENT; i++) {
         if(gEventData[i][eID] != 0) {
 
             if(!strcmp(cmdtext, gEventData[i][eCommand], true)) {
                 if(gPlayerEvent[playerid] != 0) {
-                    SendClientMessage(playerid, 0xFF0000FF, "You are already in an event! You must leave first.");
+                    SendClientMessage(playerid, 0xFF0000FF, "You are already in an event! You must leave first with /leave.");
                 } else {
                     PutPlayerInEvent(playerid, gEventData[i][eID]);
                 }
